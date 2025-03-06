@@ -93,33 +93,33 @@ function generateSummary(text) {
 
 // Utility: Chatbot Response
 async function getChatbotResponse(query, moduleTitle) {
-    // Predefined responses based on keywords
-    const responses = {
-        "ecosystem": "An ecosystem is a community of living organisms interacting with their environment. It includes both living (biotic) and non-living (abiotic) components.",
-        "biodiversity": "Biodiversity refers to the variety of life forms in an ecosystem. It's crucial for maintaining ecological balance and ecosystem services.",
-        "climate": "Climate change is a long-term change in weather patterns, primarily caused by human activities like burning fossil fuels and deforestation.",
-        "renewable": "Renewable energy comes from natural sources that replenish themselves, such as solar, wind, and hydroelectric power.",
-        "solar": "Solar energy is power generated from the sun's radiation. It's a clean, renewable source of energy.",
-        "wind": "Wind energy harnesses the power of moving air to generate electricity using wind turbines.",
-        "carbon": "Carbon emissions are greenhouse gases released into the atmosphere, primarily through burning fossil fuels.",
-        "sustainable": "Sustainability means meeting present needs without compromising future generations' ability to meet their needs."
+    const apiKey = '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'; // Replace with your Hugging Face API key
+    const payload = {
+        inputs: `You are an AI assistant knowledgeable about ${moduleTitle}. Answer the following question: ${query}`
+
     };
 
-    // Default response if no keyword match is found
-    let response = "I'm sorry, I don't have specific information about that. Try asking about ecosystems, biodiversity, climate change, or renewable energy.";
+    try {
+        const response = await fetch('https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify(payload)
+        });
 
-    // Check query for keywords and return appropriate response
-    const lowercaseQuery = query.toLowerCase();
-    for (const [keyword, answer] of Object.entries(responses)) {
-        if (lowercaseQuery.includes(keyword)) {
-            response = answer;
-            break;
-        }
+        const data = await response.json();
+        console.log('api response:', data);
+        return data[0]?.generated_text || "lets work fo greater good .";
+    } catch (error) {
+        console.error('Error fetching chatbot response:', error);
+        return "I'm sorry, I couldn't process your request. Please try again later.";
     }
-
-    // Add module context to response
-    return `[${moduleTitle}] ${response}`;
 }
+
+
+  
 
 // Render Modules on Homepage
 function renderModules(libraryId, modulesList) {
