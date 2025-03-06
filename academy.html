@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Living Academy</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="particle.js"></script> <!-- Include your particle.js file -->
+    <link rel="stylesheet" href="styles2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div id="particles-js"></div> <!-- Add this container for particles -->
+    <div id="app">
+        <!-- Navigation Bar -->
+        <nav>
+            <h1>Green Living Academy</h1>
+            <ul>
+                <li><a href="#home">about us</a></li>
+            </ul>
+        </nav>
+
+        <!-- Homepage -->
+        <div id="home">
+            <h1>Welcome to Green Living Academy</h1>
+            <p>Explore modules to learn about environmental sustainability.</p>
+            <div id="moduleLibraries">
+                <div class="library">
+                    <h2>Core Sustainability Concepts</h2>
+                    <div id="coreConcepts" class="module-grid">
+                        <a href="#coreConcepts" data-image="coreConcepts" class="module-link" data-position="left">Ecosystems and Biodiversity</a>
+                        <a href="#coreConcepts" data-image="coreConcepts" class="module-link" data-position="right">Climate Change Basics</a>
+                    </div>
+                </div>
+                <div class="library">
+                    <h2>Sustainable Solutions</h2>
+                    <div id="sustainableSolutions" class="module-grid">
+                        <a href="#sustainableSolutions" data-image="sustainableSolutions" class="module-link" data-position="center">Renewable Energy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add this inside the <body> tag, preferably near the modules section -->
+        <div id="modulePreview">
+            <img id="previewImage" src="" alt="Module Preview">
+        </div>
+
+        <!-- Module Page -->
+        <div id="modulePage" style="display: none;">
+            <button id="backBtn"><i class="fas fa-arrow-left"></i> Back to Home</button>
+            <h1 id="moduleTitle"></h1>
+
+            <!-- Lesson Section -->
+            <div id="lessonSection">
+                <div id="lessonContent" class="content-box"></div>
+                <button id="startQuizBtn" class="action-btn"><i class="fas fa-question-circle"></i> Take the Quiz</button>
+            </div>
+
+            <!-- Interactive Lesson Section -->
+            <div id="interactiveLessonSection" style="display: none;"></div>
+
+            <!-- Quiz Section -->
+            <div id="quizSection" style="display: none;">
+                <div id="quizQuestions"></div>
+                <button id="submitQuizBtn" class="action-btn"><i class="fas fa-paper-plane"></i> Submit Answers</button>
+            </div>
+
+            <!-- Chatbot Section -->
+            <div id="chatbotSection" style="display: none;">
+                <h2>Ask the EcoBot</h2>
+                <div id="summaryText" class="content-box"></div>
+                <div class="chat-input">
+                    <input type="text" id="userQuery" placeholder="Ask a question about this module...">
+                    <button id="sendQueryBtn" class="action-btn"><i class="fas fa-paper-plane"></i> Send</button>
+                </div>
+                <p id="chatbotResponse" class="response-box"></p>
+            </div>
+
+            <!-- Interactive Lesson Container -->
+            <div id="interactiveLessonContainer" style="width: 800px; height: 600px; display: none;"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Green Living Academy. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </footer>
+    </div>
+    <script src="script1.js"></script>
+    <script>
+        const backgroundImages = [
+            './images/bg1.jpg',
+            './images/bg2.jpg',
+            './images/bg3.webp',
+        ];
+
+        let currentBackgroundIndex = 0;
+
+        function changeBackgroundImage() {
+            currentBackgroundIndex = (currentBackgroundIndex + 1) % backgroundImages.length;
+            document.body.style.backgroundImage = `url('${backgroundImages[currentBackgroundIndex]}')`;
+        }
+
+        setInterval(changeBackgroundImage, 5000); // Change background every 5 seconds
+    </script>
+</body>
+
+</html>
