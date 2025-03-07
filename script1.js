@@ -100,7 +100,7 @@ async function getChatbotResponse(query, moduleTitle) {
     };
 
     try {
-        const response = await fetch('https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill', {
+        const response = await fetch('https://api-inference.huggingface.co/models/meta-llama/Llama-2-7b-chat-hf', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
